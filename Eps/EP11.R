@@ -5,8 +5,8 @@ library(boot)
 library(simpleboot)
 library(readxl)
 
-#Wladimir Dur醤
-#Rodrigo Hern醤dez
+#Wladimir Dur?n
+#Rodrigo Hern?ndez
 #Manuel Villar
 
 options(scipen=999)
@@ -26,32 +26,32 @@ alfa <- 0.05
 # que viven solas y poseen solo estudios de ense帽anza media?
 
 # Lectura de datos
-datos <- read.csv2("C:\\Users\\Asus\\Downloads\\EP11wado\\EP11\\EP11 Datos.csv")
+datos <- read.csv2("C:\\Users\\villa\\OneDrive\\Documentos\\inferencia\\EP11 Datos.csv")
 
 # Se seleccionan solo los datos que se trabajar谩n.
 datosSeleccionados <- datos %>% select(id.vivienda, sexo, numper, e6a, ytotcorh)
 
 # Se filtran los datos que se necesitan, es decir, mujeres que vivan solas y tengan educaci贸n media o superior completa.
-datosFiltrados <- datosSeleccionados %>% filter(numper == 1 & sexo == "Mujer" & e6a %in% c("Educaci髇 Media Cient韋ico-Humanista", 
-"Humanidades (Sistema Antiguo)", "T閏nica, Comercial, Industrial o Normalista (Sistema Antiguo)", "Educaci髇 Media T閏nica Profesional", 
-"T閏nico Nivel Superior Incompleto (Carreras 1 a 3 a駉s)", "T閏nico Nivel Superior Completo (Carreras 1 a 3 a駉s)", 
-"Profesional Incompleto (Carreras 4 o m醩 a駉s)", "Profesional Completo (Carreras 4 o m醩 a駉s)", "Postgrado Incompleto", "Postgrado Completo"))
+datosFiltrados <- datosSeleccionados %>% filter(numper == 1 & sexo == "Mujer" & e6a %in% c("Educaci?n Media Cient?fico-Humanista", 
+"Humanidades (Sistema Antiguo)", "T?cnica, Comercial, Industrial o Normalista (Sistema Antiguo)", "Educaci?n Media T?cnica Profesional", 
+"T?cnico Nivel Superior Incompleto (Carreras 1 a 3 a?os)", "T?cnico Nivel Superior Completo (Carreras 1 a 3 a?os)", 
+"Profesional Incompleto (Carreras 4 o m?s a?os)", "Profesional Completo (Carreras 4 o m?s a?os)", "Postgrado Incompleto", "Postgrado Completo"))
 
 # Se estipula la hip贸tesis a contrastar:
 # H0: Las medias del ingreso de las mujeres con educaci贸n media y que viven solas es similar a la de las mujeres con educaci贸n superior y que viven solas.   (u1 - u2 = 0)
 # Ha: Las medias del ingreso de las mujeres con educaci贸n media y que viven solas es distinta a la de las mujeres con educaci贸n superior y que viven solas.  (u1 - u2 != 0)
 
 # Se filtra la poblaci贸n de mujeres con educaci贸n media
-mujeresEdMedia <- datosFiltrados %>% filter(e6a %in% c("Educaci髇 Media Cient韋ico-Humanista", "Humanidades (SistemaAntiguo)", "T閏nica, Comercial, Industrial o Normalista (Sistema Antiguo)",
-    "Educaci髇 Media T閏nica Profesional", "T閏nico Nivel Superior Incompleto (Carreras 1 a 3 a駉s)", "Profesional Incompleto (Carreras 4 o m醩 a駉s)"))
+mujeresEdMedia <- datosFiltrados %>% filter(e6a %in% c("Educaci?n Media Cient?fico-Humanista", "Humanidades (SistemaAntiguo)", "T?cnica, Comercial, Industrial o Normalista (Sistema Antiguo)",
+    "Educaci?n Media T?cnica Profesional", "T?cnico Nivel Superior Incompleto (Carreras 1 a 3 a?os)", "Profesional Incompleto (Carreras 4 o m?s a?os)"))
 
 # Se filtra la poblaci贸n de mujeres con educaci贸n superior
-mujeresEdSuperior <- datosFiltrados %>% filter(e6a %in% c("Profesional Completo (Carreras 4 o m醩 a駉s)", "Postgrado Incompleto", "Postgrado Completo"))
+mujeresEdSuperior <- datosFiltrados %>% filter(e6a %in% c("Profesional Completo (Carreras 4 o m?s a?os)", "Postgrado Incompleto", "Postgrado Completo"))
 
 
 # Crear una gran cantidad P de permutaciones (generalmente terminada en 9 para simplificar los c贸mputos) 
 # a partir de las muestras originales, usando muestreo sin reposici贸n sobre la muestra combinada, 
-# y obtener el estad韘tico  para cada una de las muestras.
+# y obtener el estad?stico  para cada una de las muestras.
 
 # Se define la cantidad de permutaciones que se realizar谩n.
 P <- 3458
@@ -100,7 +100,7 @@ graficarDistribucion <- function(distribucion, colorRojo){
   observaciones <- data.frame(distribucion)
   
   h1 <- gghistogram(observaciones, x = "distribucion",
-                    xlab = "Estad韘tico de inter閟",
+                    xlab = "Estad?stico de inter?s",
                     ylab = "Frecuencia", bins = 30)
   
   g1 <- ggqqplot(observaciones, x = "distribucion", color = colorRojo)
@@ -146,7 +146,7 @@ calcularValorP <- function(distribucion, valorObservado, repeticiones, alternati
 # Salida: Indica los valores originales y luego de las permutaciones, incluyendo el valorP para concluir en base a ello.
 contrastarHipotesisPermutaciones <- function(muestra1, muestra2, repeticiones, FUN, alternative){
   cat ( "Prueba de permutaciones \n\n " )
-  cat ( "Hip髏esis alternativa : " , alternative , "\n" )
+  cat ( "Hip?tesis alternativa : " , alternative , "\n" )
   observado <- calcularDiferencias(list(muestra1,muestra2), FUN)
   cat ( "Valor observado : " , observado , "\n" )
   
@@ -177,115 +177,115 @@ contrastarHipotesisPermutaciones(muestraEdMedia, muestraEdSuperior, repeticiones
 
 
 
-# 2. Propongan una pregunta de investigaci贸n original, que involucre la comparaci贸n de las medias de m谩s de
-# dos grupos independientes (m谩s abajo se dan unos ejemplos). Fijando una semilla distinta a la anterior,
-# seleccionen una muestra aleatoria de hogares (400 < n < 600) y respondan la pregunta propuesta utilizando
-# bootstrapping. Solo por ejercicio acad茅mico, aplique un an谩lisis post-hoc con bootstrapping aunque este no
-# sea necesario.
-
-# Se fija una nueva semilla a utilizar
-set.seed(42069)
-
-# Se establece el nivel de confianza a utilizar
-alfa <- 0.05
-
-# Pregunta de investigaci贸n: 驴El ingreso per c谩pita de las mujeres que viven solas y poseen estudios superiores es similar a las mujeres
-# que viven solas y poseen solo estudios de ense帽anza media?
-
-# Pregunta de investigaci贸n: 
-# 驴El ingreso per capita es igual entre hombres que pasaron la mayor parte del tiempo viviendo con s贸lo su madre, s贸lo su padre ambos padres?
-
-
-# Se seleccionan solo los datos que se trabajar谩n.
-datosSeleccionados2 <- datos %>% select(id.vivienda, sexo, r11, ytotcorh)
-
-# Se filtran los datos de lo que ocuparemos
-datosFiltrados2 <- datosSeleccionados2 %>% filter(sexo == "Hombre"  & r11 %in% c("S髄o su padre", 
-                                                                                 "S髄o su madre", 
-                                                                                 "Ambos padres"))
-
-# Se estipula la hip贸tesis a contrastar:
-#H0: Las 3 medias se distribuyen de manera similar entre si
-#HA: Las 3 medias se distribuyen de manera diferente entre si
-
-# Se filtran los datos para hombres con s贸lo su padre, s贸lo su madre y ambos padres por separado
-hombresSoloPadre <- datosFiltrados2 %>% filter(r11 == "S髄o su padre")
-hombresSoloMadre <- datosFiltrados2 %>% filter(r11 == "S髄o su madre")
-hombresAmbosPadres <- datosFiltrados2 %>% filter(r11 == "Ambos padres")
-
-# Se saca el tama帽o las muestras de la poblaci贸n
-n1 <- sample(c(400:600), size = 1, replace = F)
-n2 <- sample(c(400:600), size = 1, replace = F)
-n3 <- sample(c(400:600), size = 1, replace = F)
-
-
-
-
-# Se sacan las muestras de los datos correspondientes
-muestraSoloPadre <- as.numeric(sample(hombresSoloPadre[["ytotcorh"]],size=n1))
-muestraSoloMadre <- as.numeric(sample(hombresSoloMadre[["ytotcorh"]],size=n2))
-muestraAmbosPadres <- as.numeric(sample(hombresAmbosPadres[["ytotcorh"]],size=n3))
-
-#Realizamos un Shapiro test
-
-print(shapiro.test(muestraSoloPadre))
-print(shapiro.test(muestraSoloMadre))
-print(shapiro.test(muestraAmbosPadres))
-
-# Se calculan las medias de las muestras
-mediaSoloPadre <- mean(muestraSoloPadre)
-mediaSoloMadre <- mean(muestraSoloMadre)
-mediaAmbosPadres <- mean(muestraAmbosPadres)
-
-# Se calcula la diferencia entre las tres medias, como la de ambos padres es mayor, entonces:
-diffAmbosSoloP <- mediaAmbosPadres - mediaSoloPadre
-diffAmbosSoloM <- mediaAmbosPadres - mediaSoloMadre
-diffSoloMSoloP <- mediaSoloMadre - mediaSoloPadre
-
-# Se realiza Bootstrapping
-B <- 1500
-
-# Bootstrapping entre la diferencia de medias de hombres con ambos padres y s贸lo padre
-btsAmbosSoloP <- two.boot(muestraAmbosPadres,muestraSoloPadre, FUN = mean, R = B)
-valoresAmbosSoloP <- data.frame(btsAmbosSoloP$t)
-colnames(valoresAmbosSoloP) <- "valoresAmbosSoloP"
- 
-# Bootstrapping entre la diferencia de medias de hombres con ambos padres y s贸lo madre
-btsAmbosSoloM <- two.boot(muestraAmbosPadres,muestraSoloMadre, FUN = mean, R = B)
-valoresAmbosSoloM <- data.frame(btsAmbosSoloM$t)
-colnames(valoresAmbosSoloM) <- "valoresAmbosSoloM"
-
-# Bootstrapping entre la diferencia de medias de hombres con s贸lo madre y s贸lo padre
-btsSoloMSoloP <- two.boot(muestraSoloMadre,muestraSoloPadre, FUN = mean, R = B)
-valoresSoloMSoloP <- data.frame(btsSoloMSoloP$t)
-colnames(valoresSoloMSoloP) <- "valoresSoloMSoloP"
-
-# Se realizan los histogramas para cada uno
-histogramaAmbosSoloP <- gghistogram(valoresAmbosSoloP, x = "valoresAmbosSoloP", color = "blue",
-                           fill= "blue", bins = 100)
-
-histogramaAmbosSoloM <- gghistogram(valoresAmbosSoloM, x = "valoresAmbosSoloM", color = "blue",
-                           fill= "blue", bins = 100)
-
-histogramaSoloMSoloP <- gghistogram(valoresSoloMSoloP, x = "valoresSoloMSoloP", color = "blue",
-                           fill= "blue", bins = 100)
-print(histogramaAmbosSoloP)
-print(histogramaAmbosSoloM)
-print(histogramaSoloMSoloP)
-
-# INTERVALOS DE CONFIANZA
-intervaloAmbosSoloP <- boot.ci(btsAmbosSoloP, conf = 1-alfa, type = "norm")
-intervaloAmbosSoloM <- boot.ci(btsAmbosSoloM, conf = 1-alfa, type = "norm")
-intervaloSoloMSoloP <- boot.ci(btsSoloMSoloP, conf = 1-alfa, type = "norm")
-
-print(intervaloAmbosSoloP)
-print(intervaloAmbosSoloM)
-print(intervaloSoloMSoloP)
-
-
-#Seg鷑 el test de normalidad, dado que todos los valores p fueron menores a 0.05, se puede afirmar con un 95% de confianza que
-#las variables no se distribuyen de manera normal, por lo que se rechaza H0.
-
-print(summary(btsAmbosSoloM))
-print(summary(btsAmbosSoloP))
-print(summary(btsSoloMSoloP))
+# # 2. Propongan una pregunta de investigaci贸n original, que involucre la comparaci贸n de las medias de m谩s de
+# # dos grupos independientes (m谩s abajo se dan unos ejemplos). Fijando una semilla distinta a la anterior,
+# # seleccionen una muestra aleatoria de hogares (400 < n < 600) y respondan la pregunta propuesta utilizando
+# # bootstrapping. Solo por ejercicio acad茅mico, aplique un an谩lisis post-hoc con bootstrapping aunque este no
+# # sea necesario.
+# 
+# # Se fija una nueva semilla a utilizar
+# set.seed(42069)
+# 
+# # Se establece el nivel de confianza a utilizar
+# alfa <- 0.05
+# 
+# # Pregunta de investigaci贸n: 驴El ingreso per c谩pita de las mujeres que viven solas y poseen estudios superiores es similar a las mujeres
+# # que viven solas y poseen solo estudios de ense帽anza media?
+# 
+# # Pregunta de investigaci贸n: 
+# # 驴El ingreso per capita es igual entre hombres que pasaron la mayor parte del tiempo viviendo con s贸lo su madre, s贸lo su padre ambos padres?
+# 
+# 
+# # Se seleccionan solo los datos que se trabajar谩n.
+# datosSeleccionados2 <- datos %>% select(id.vivienda, sexo, r11, ytotcorh)
+# 
+# # Se filtran los datos de lo que ocuparemos
+# datosFiltrados2 <- datosSeleccionados2 %>% filter(sexo == "Hombre"  & r11 %in% c("S?lo su padre", 
+#                                                                                  "S?lo su madre", 
+#                                                                                  "Ambos padres"))
+# 
+# # Se estipula la hip贸tesis a contrastar:
+# #H0: Las 3 medias se distribuyen de manera similar entre si
+# #HA: Las 3 medias se distribuyen de manera diferente entre si
+# 
+# # Se filtran los datos para hombres con s贸lo su padre, s贸lo su madre y ambos padres por separado
+# hombresSoloPadre <- datosFiltrados2 %>% filter(r11 == "S?lo su padre")
+# hombresSoloMadre <- datosFiltrados2 %>% filter(r11 == "S?lo su madre")
+# hombresAmbosPadres <- datosFiltrados2 %>% filter(r11 == "Ambos padres")
+# 
+# # Se saca el tama帽o las muestras de la poblaci贸n
+# n1 <- sample(c(400:600), size = 1, replace = F)
+# n2 <- sample(c(400:600), size = 1, replace = F)
+# n3 <- sample(c(400:600), size = 1, replace = F)
+# 
+# 
+# 
+# 
+# # Se sacan las muestras de los datos correspondientes
+# muestraSoloPadre <- as.numeric(sample(hombresSoloPadre[["ytotcorh"]],size=n1))
+# muestraSoloMadre <- as.numeric(sample(hombresSoloMadre[["ytotcorh"]],size=n2))
+# muestraAmbosPadres <- as.numeric(sample(hombresAmbosPadres[["ytotcorh"]],size=n3))
+# 
+# #Realizamos un Shapiro test
+# 
+# print(shapiro.test(muestraSoloPadre))
+# print(shapiro.test(muestraSoloMadre))
+# print(shapiro.test(muestraAmbosPadres))
+# 
+# # Se calculan las medias de las muestras
+# mediaSoloPadre <- mean(muestraSoloPadre)
+# mediaSoloMadre <- mean(muestraSoloMadre)
+# mediaAmbosPadres <- mean(muestraAmbosPadres)
+# 
+# # Se calcula la diferencia entre las tres medias, como la de ambos padres es mayor, entonces:
+# diffAmbosSoloP <- mediaAmbosPadres - mediaSoloPadre
+# diffAmbosSoloM <- mediaAmbosPadres - mediaSoloMadre
+# diffSoloMSoloP <- mediaSoloMadre - mediaSoloPadre
+# 
+# # Se realiza Bootstrapping
+# B <- 1500
+# 
+# # Bootstrapping entre la diferencia de medias de hombres con ambos padres y s贸lo padre
+# btsAmbosSoloP <- two.boot(muestraAmbosPadres,muestraSoloPadre, FUN = mean, R = B)
+# valoresAmbosSoloP <- data.frame(btsAmbosSoloP$t)
+# colnames(valoresAmbosSoloP) <- "valoresAmbosSoloP"
+#  
+# # Bootstrapping entre la diferencia de medias de hombres con ambos padres y s贸lo madre
+# btsAmbosSoloM <- two.boot(muestraAmbosPadres,muestraSoloMadre, FUN = mean, R = B)
+# valoresAmbosSoloM <- data.frame(btsAmbosSoloM$t)
+# colnames(valoresAmbosSoloM) <- "valoresAmbosSoloM"
+# 
+# # Bootstrapping entre la diferencia de medias de hombres con s贸lo madre y s贸lo padre
+# btsSoloMSoloP <- two.boot(muestraSoloMadre,muestraSoloPadre, FUN = mean, R = B)
+# valoresSoloMSoloP <- data.frame(btsSoloMSoloP$t)
+# colnames(valoresSoloMSoloP) <- "valoresSoloMSoloP"
+# 
+# # Se realizan los histogramas para cada uno
+# histogramaAmbosSoloP <- gghistogram(valoresAmbosSoloP, x = "valoresAmbosSoloP", color = "blue",
+#                            fill= "blue", bins = 100)
+# 
+# histogramaAmbosSoloM <- gghistogram(valoresAmbosSoloM, x = "valoresAmbosSoloM", color = "blue",
+#                            fill= "blue", bins = 100)
+# 
+# histogramaSoloMSoloP <- gghistogram(valoresSoloMSoloP, x = "valoresSoloMSoloP", color = "blue",
+#                            fill= "blue", bins = 100)
+# print(histogramaAmbosSoloP)
+# print(histogramaAmbosSoloM)
+# print(histogramaSoloMSoloP)
+# 
+# # INTERVALOS DE CONFIANZA
+# intervaloAmbosSoloP <- boot.ci(btsAmbosSoloP, conf = 1-alfa, type = "norm")
+# intervaloAmbosSoloM <- boot.ci(btsAmbosSoloM, conf = 1-alfa, type = "norm")
+# intervaloSoloMSoloP <- boot.ci(btsSoloMSoloP, conf = 1-alfa, type = "norm")
+# 
+# print(intervaloAmbosSoloP)
+# print(intervaloAmbosSoloM)
+# print(intervaloSoloMSoloP)
+# 
+# 
+# #Seg?n el test de normalidad, dado que todos los valores p fueron menores a 0.05, se puede afirmar con un 95% de confianza que
+# #las variables no se distribuyen de manera normal, por lo que se rechaza H0.
+# 
+# print(summary(btsAmbosSoloM))
+# print(summary(btsAmbosSoloP))
+# print(summary(btsSoloMSoloP))
